@@ -1,0 +1,5 @@
+dist/
+generated/
+*.generated.*
+*.js
+*.d.ts
