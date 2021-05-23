@@ -42,11 +42,12 @@ jobs:
                 # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                 # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
               run: echo "::set-env APP_VERSION_TAG=$(node cli semantic-release)" 
+              
+            - name: echo APP_VERSION_TAG
+              run: echo "$env.APP_VERSION_TAG"
 
             - name: Create Pull Request
               uses: peter-evans/create-pull-request@v3
               with:
                 branch: "release/${{ env.APP_VERSION_TAG }}"
 
-            - name: echo APP_VERSION_TAG
-              run: echo "$env.APP_VERSION_TAG"
