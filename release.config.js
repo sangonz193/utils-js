@@ -1,3 +1,3 @@
 module.exports = {
-  "branches": ["main"]
+  "branches": ["update-deploy-workflow"]
 }
