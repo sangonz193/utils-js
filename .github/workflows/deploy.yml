@@ -23,7 +23,7 @@ jobs:
                   npm i
 
             - name: Create env file
-              run: node cli create env-file -p
+              run: echo "APP_VERSION_TAG=$(node cli semantic-release)" > .env
 
             - name: No changes to commit
               run: |
@@ -39,12 +39,6 @@ jobs:
             # TODO: uncomment
             # - name: Tests
             #   run: npm test
-
-            - name: Release
-              # env:
-                # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-              run: echo "APP_VERSION_TAG=$(node cli semantic-release)" >> $GITHUB_ENV
 
             - name: echo APP_VERSION_TAG
               run: echo "$env.APP_VERSION_TAG"
