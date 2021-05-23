@@ -47,4 +47,6 @@ jobs:
               uses: peter-evans/create-pull-request@v3
               with:
                 branch: "release/${{ env.APP_VERSION_TAG }}"
+
+            - name: echo APP_VERSION_TAG
               run: echo "$env.APP_VERSION_TAG"
