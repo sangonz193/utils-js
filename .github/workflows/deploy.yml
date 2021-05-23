@@ -46,4 +46,4 @@ jobs:
             - name: Create Pull Request
               uses: peter-evans/create-pull-request@v3
               with:
-                branch: release/{{ steps.cpr.outputs.pull-request-url }}
+                branch: release/${{ steps.cpr.outputs.pull-request-url }}
