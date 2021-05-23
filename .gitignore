@@ -102,3 +102,12 @@ dist
 
 # TernJS port file
 .tern-port
+
+.vscode
+
+*.js
+*.d.ts
+
+!.babelrc.js
+!.eslintrc.js
+!.prettierrc.js
