@@ -6,7 +6,7 @@ on:
       - update-deploy-workflow
 
 jobs:
-    code-analysis:
+    deploy:
         runs-on: ubuntu-latest
 
         steps:
