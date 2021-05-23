@@ -22,8 +22,11 @@ jobs:
                   npm i -g npm@6
                   npm i
 
-            - name: Create env file
-              run: echo "APP_VERSION_TAG=$(node cli semantic-release)" > .env
+            - name: Set APP_VERSION_TAG
+              run: echo "APP_VERSION_TAG=$(node cli semantic-release)" >> $GITHUB_ENV
+
+            - name: echo APP_VERSION_TAG
+              run: echo "$APP_VERSION_TAG"
 
             - name: No changes to commit
               run: |
@@ -39,9 +42,6 @@ jobs:
             # TODO: uncomment
             # - name: Tests
             #   run: npm test
-
-            - name: echo APP_VERSION_TAG
-              run: echo "$env.APP_VERSION_TAG"
 
             - name: Create Pull Request
               uses: peter-evans/create-pull-request@v3
