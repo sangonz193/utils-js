@@ -13,10 +13,10 @@ const command: CommandModule<{}, {}> = {
 			cwd: projectPath,
 			encoding: "utf8",
 		})
-		const [, versionNumber] =
-			(typeof spawnOut.stdout === "string"
-				? spawnOut.stdout.match(/Published release (\d\.\d\.\d(-[\w+]\.\d)?)/)
-				: undefined) ?? []
+		const spawnOutString = typeof spawnOut.stdout === "string" ? spawnOut.stdout : undefined
+
+		console.log(spawnOutString)
+		const [, versionNumber] = spawnOutString?.match(/Published release (\d\.\d\.\d(-[\w+]\.\d)?)/) || []
 
 		if (!versionNumber) throw new Error("`stdoutString` is not of type string")
 		console.log(`v${versionNumber}`)
