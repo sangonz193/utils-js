@@ -37,6 +37,7 @@ jobs:
               run: |
                   echo "GH_TOKEN=${{ secrets.GH_TOKEN }}" >> .env
                   echo "NPM_TOKEN=${{ secrets.NPM_TOKEN }}" >> .env
+                  cat .env
                   echo "APP_VERSION_TAG=$(node cli semantic-release)" >> $GITHUB_ENV
 
             # TODO: uncomment
