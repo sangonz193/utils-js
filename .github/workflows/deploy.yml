@@ -41,8 +41,8 @@ jobs:
               # env:
                 # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                 # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-              run: echo "::set-env APP_VERSION_TAG=$(node cli semantic-release)" 
-              
+              run: echo "APP_VERSION_TAG=$(node cli semantic-release)" >> $GITHUB_ENV
+
             - name: echo APP_VERSION_TAG
               run: echo "$env.APP_VERSION_TAG"
 
