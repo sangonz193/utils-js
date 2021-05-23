@@ -1,6 +1,9 @@
 name: deploy
 
-on: workflow_dispatch
+on:
+  push:
+    branch:
+      update-deploy-workflow
 
 jobs:
     deploy:
