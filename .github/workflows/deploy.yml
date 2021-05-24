@@ -1,0 +1,55 @@
+name: deploy
+
+on:
+  push:
+    branch:
+      update-deploy-workflow
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Use Node.js
+              uses: actions/setup-node@v1
+              with:
+                  node-version: "15.x"
+
+            - name: Install dependencies
+              run: |
+                  npm i -g npm@6
+                  npm i
+
+            - name: No changes to commit
+              run: |
+                  git status --porcelain
+                  [[ $(git status --porcelain) ]] && exit 1 || exit 0
+
+            - name: TypeScript check
+              run: npx tsc
+
+            - name: ESLint check
+              run: npx eslint . --max-warnings=0
+
+            - name: Set envs
+              run: |
+                  echo "GH_TOKEN=${{ secrets.GH_TOKEN }}" >> .env
+                  echo "NPM_TOKEN=${{ secrets.NPM_TOKEN }}" >> .env
+                  echo "APP_VERSION_TAG=$(node cli semantic-release)" >> .env
+                  cat .env
+                  if [ -f .env ]
+                  then
+                    echo $(cat .env | sed 's/#.*//g' | xargs) >> $GITHUB_ENV
+                  fi
+
+            # TODO: uncomment
+            # - name: Tests
+            #   run: npm test
+
+            - name: Create Pull Request
+              uses: peter-evans/create-pull-request@v3
+              with:
+                branch: "release/${{ env.APP_VERSION_TAG }}"
+
