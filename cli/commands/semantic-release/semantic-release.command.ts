@@ -18,8 +18,8 @@ const command: CommandModule<{}, {}> = {
 		console.log({ spawnOutString })
 		const [, versionNumber] = spawnOutString?.match(/Published release (\d\.\d\.\d(-[\w+]\.\d)?)/) || []
 
-		if (!versionNumber) throw new Error("`versionNumber` is not of type string")
 		console.log(`v${versionNumber}`)
+		if (!versionNumber) throw new Error("`versionNumber` is not of type string")
 	},
 }
 
