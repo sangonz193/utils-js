@@ -15,7 +15,7 @@ const command: CommandModule<{}, {}> = {
 		})
 		const spawnOutString = typeof spawnOut.stdout === "string" ? spawnOut.stdout : undefined
 
-		console.log({spawnOutString})
+		console.log({ spawnOutString })
 		const [, versionNumber] = spawnOutString?.match(/Published release (\d\.\d\.\d(-[\w+]\.\d)?)/) || []
 
 		if (!versionNumber) throw new Error("`versionNumber` is not of type string")
